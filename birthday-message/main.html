@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday!</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Happy Birthday, Ma'am Liezel!</h1>
+      <p id="message"></p>
+      <div>
+        <p id="author"></p>
+        <button id="next-button" onclick="update()">Next</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    let currentIndex = -1;
+    const popSound = new Audio("./confetti-pop.mp3");
+    const messages = [
+      {
+        author: "Melgar",
+        message:
+          "Hi po ma'am thank you po for being our teacher and teaching us valuable lesson that will help us all belated happy birthday po ma'am",
+      },
+      {
+        author: "Agustin",
+        message:
+          "Belated Happy birthday po Ma’am Zel, May God guide you everywhere you go po, and blessed you even more with beauty and grace. Stay healthy po, we love you Ma’am Zel!",
+      },
+    ];
+
+    function update() {
+      if (currentIndex >= messages.length - 1) currentIndex = 0;
+      else currentIndex++;
+
+      const message = document.getElementById("message");
+      const author = document.getElementById("author");
+      const selectedMessage = messages[currentIndex];
+
+      message.textContent = `"${selectedMessage.message}"`;
+      author.textContent = `By: ${selectedMessage.author}`;
+
+      popSound.currentTime = 0;
+      popSound.play();
+    }
+
+    update();
+  </script>
+</html>
